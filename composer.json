@@ -1,0 +1,26 @@
+{
+    "name": "ukmnorge/designsymfony2",
+    "description": "Wrapper for UKM Design, brukt med Symfony 2x-rammeverket",
+    "homepage": "https://github.com/UKMNorge/UKMDesignSymfony2",
+    "minimum-stability": "dev",
+    "authors": [{
+            "name": "Asgeir Stavik Hustad",
+            "email": "asgeirsh@ukmmedia.no",
+            "role": "Developer"
+        },
+        {
+            "name": "Marius Mandal",
+            "email": "mariusmandal@ukm.no",
+            "role": "Lead Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "UKMNorge\\TemplateEngine\\": "TemplateEngine/"
+        }
+    },
+    "require": {
+        "ukmnorge/design": "dev-master",
+        "symfony/yaml": ">=2.0"
+    }
+}
