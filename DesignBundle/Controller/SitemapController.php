@@ -11,7 +11,8 @@ class SitemapController extends Controller
 {
 	public function cronAction()
 	{
-		$sitemapServ = $this->get('ukmdesign.sitemap');
+		$ukmdesign = $this->get('ukmdesign');
+		$sitemapServ = $ukmdesign->getSitemap();
 		$sitemapServ->loadFromGithub(20);
 		
 		return $this->textResponse(
