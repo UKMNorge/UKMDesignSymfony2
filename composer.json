@@ -16,7 +16,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "UKMNorge\\TemplateEngine\\": "TemplateEngine/"
+            "UKMNorge\\DesignBundle": "DesignBundle/"
         }
     },
     "require": {
