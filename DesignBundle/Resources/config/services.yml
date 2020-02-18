@@ -7,3 +7,4 @@ services:
     ukmdesign: 
         class: UKMNorge\DesignBundle\Services\UKMDesign
         public: true
+        arguments: [@logger]
