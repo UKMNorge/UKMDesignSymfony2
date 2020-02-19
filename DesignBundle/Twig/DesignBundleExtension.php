@@ -9,7 +9,7 @@ use UKMNorge\Twig\Definitions\Filters;
 use UKMNorge\Twig\Definitions\Functions;
 
 
-class AppExtension extends AbstractExtension
+class DesignBundleExtension extends AbstractExtension
 {
     public function getFilters()
     {
