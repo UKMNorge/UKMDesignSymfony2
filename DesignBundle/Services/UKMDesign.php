@@ -7,12 +7,8 @@ use UKMNorge\Design\UKMDesign as UKMNorgeUKMDesign;
 
 class UKMDesign extends UKMNorgeUKMDesign {
 
-    private static $log;
-
-    public function __construct($logger)
+    public function __construct()
     {
-        static::$log = $logger;
-        static::$log->info("Constructing UKM Design service");
         require_once('UKMconfig.inc.php');
         static::setCurrentSection(
             new Section(
@@ -35,7 +31,6 @@ class UKMDesign extends UKMNorgeUKMDesign {
      */
     private static function _initUKMDesign()
     {
-        static::$log->info("Initializing UKM Design service");
         UKMDesign::init();
         UKMDesign::getHeader()::getSeo()
             ->setImage(
