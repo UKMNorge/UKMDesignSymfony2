@@ -1,13 +1,15 @@
 <?php
 namespace UKMNorge\DesignBundle\Services;
 
+use Symfony\Component\HttpKernel\Config\FileLocator;
 use UKMNorge\Design\Sitemap\Section;
 use UKMNorge\Design\Image;
 use UKMNorge\Design\UKMDesign as UKMNorgeUKMDesign;
+use UKMNorge\Design\YamlLoader;
 
 class UKMDesign extends UKMNorgeUKMDesign {
 
-    public function __construct()
+    public function __construct(FileLocator $fileLocator, $kernel_cache_dir)
     {
         require_once('UKMconfig.inc.php');
         static::setCurrentSection(
@@ -18,7 +20,23 @@ class UKMDesign extends UKMNorgeUKMDesign {
             )
         );
 
-        static::_initUKMDesign();
+        // Opprett cache-mappe om den ikke finnes
+        try {
+            $fileLocator->locate($kernel_cache_dir.'/ukmdesignbundle/');
+        } catch( \InvalidArgumentException $e ) {
+            mkdir( $kernel_cache_dir .'/ukmdesignbundle/', 0777, true );
+        }
+        
+
+        $yamlLoader = new YamlLoader(
+            $fileLocator->locate($kernel_cache_dir.'/ukmdesignbundle/'),
+            str_replace(
+                'designsymfony2/DesignBundle',
+                'design', 
+                $fileLocator->locate('@UKMDesignBundle/Resources/config/')
+            )
+        );
+        static::_initUKMDesign( $yamlLoader );
 
     }
 
@@ -29,9 +47,9 @@ class UKMDesign extends UKMNorgeUKMDesign {
      *
      * @return void
      */
-    private static function _initUKMDesign()
+    private static function _initUKMDesign( $yamlLoader )
     {
-        UKMDesign::init();
+        UKMDesign::init( $yamlLoader );
         UKMDesign::getHeader()::getSeo()
             ->setImage(
                 new Image(

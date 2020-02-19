@@ -7,3 +7,6 @@ services:
     ukmdesign: 
         class: UKMNorge\DesignBundle\Services\UKMDesign
         public: true
+        arguments:
+            - "@file_locator"
+            - '%kernel.cache_dir%'
